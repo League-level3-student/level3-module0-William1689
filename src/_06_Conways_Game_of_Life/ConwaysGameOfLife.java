@@ -66,7 +66,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
     }
-    
+    //Conway rules
     boolean run = false;
     @Override
     public void actionPerformed(ActionEvent e) {

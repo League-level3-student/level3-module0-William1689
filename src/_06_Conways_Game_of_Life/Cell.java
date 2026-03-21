@@ -35,6 +35,7 @@ public class Cell implements Drawable{
      * as if by reproduction.
      * (source: Wikipedia) 
      */
+    //Cell needs atleast two neightbors to live
     public void liveOrDie(int numNeighbors) {
 
     }
