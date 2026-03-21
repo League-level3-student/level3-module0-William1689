@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+//Add stuff here
 public class ConwaysGameOfLife extends JPanel implements ActionListener{
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 
     public void launchGame() {
         //build the window and start the simulation
-        //setPreferredSize(new Dimension(WIDTH, HEIGHT));
+       setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLayout(new BorderLayout());
 
         window = new JFrame("Conway's Game Of Life");
