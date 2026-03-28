@@ -19,6 +19,7 @@ public class Cell implements Drawable{
 
     /*
      * 10. Complete the liveOrDie method
+     *liveOrDie[]
      *     It sets isAlive to true or false based on the neighbors and 
      *     the rules of the game:
      *

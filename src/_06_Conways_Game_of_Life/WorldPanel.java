@@ -19,7 +19,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
     private Timer timer;
 
     // 1. Create a 2D array of Cells. Do not initialize it.
-Cell[][] cells;
+Cell cells[][];
 
     public WorldPanel(int w, int h, int cpr) {
         setPreferredSize(new Dimension(w, h));
@@ -28,12 +28,17 @@ Cell[][] cells;
         this.cellsPerRow = cpr;
 
         // 2. Calculate the cell size.
-        
+        cellSize = w/cpr;
         // 3a. Initialize the cell array to the appropriate size.
-        
+        cells = new Cell[cpr][cpr]; 
         // 3b. Iterate through the array and initialize each cell.
         //    Don't forget to consider the cell's dimensions when 
         //    passing in the location.
+        for(int i = 0; i<cells.length;i++) {
+        	for(int j = 0; j<cells.length;j++) {
+        		cells[i][j] = new Cell(i,j,cellSize);
+        	}
+        }
 
     }
 
