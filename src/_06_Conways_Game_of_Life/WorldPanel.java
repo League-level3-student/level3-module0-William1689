@@ -15,8 +15,9 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
     private static final long serialVersionUID = 1L;
     private int cellsPerRow;
     private int cellSize;
-
+    Random ran = new Random();
     private Timer timer;
+    
 
     // 1. Create a 2D array of Cells. Do not initialize it.
 Cell cells[][];
@@ -45,13 +46,28 @@ Cell cells[][];
     public void randomizeCells() {
         // 4. Iterate through each cell and randomly set each
         //    cell's isAlive memeber to true or false
-
+ for(int l = 0; l<cells.length;l++) {
+	 for(int o = 0;o<cells.length;o++) {
+		 int r = ran.nextInt(2);
+		 if(r == 0) {
+			 cells[l][o].isAlive = true;
+				 
+			 }
+		 else {
+			 cells[l][o].isAlive = false;
+		 }
+	 }
+ }
         repaint();
     }
 
     public void clearCells() {
         // 5. Iterate through the cells and set them all to dead
-
+    	for(int q = 0; q<cells.length;q++) {
+    		for(int w = 0;w<cells.length;w++) {
+    			cells[q][w].isAlive = false;
+    		}
+    	}
         repaint();
     }
 
@@ -70,7 +86,11 @@ Cell cells[][];
     @Override
     public void paintComponent(Graphics g) {
         // 6. Iterate through the cells and draw them all
-
+    	for(int z = 0; z<cells.length;z++) {
+    		for(int x = 0; x<cells.length;x++) {
+    			
+    		}
+    	}
 
         // Draw the perimeter of the grid
         g.setColor(Color.BLACK);
