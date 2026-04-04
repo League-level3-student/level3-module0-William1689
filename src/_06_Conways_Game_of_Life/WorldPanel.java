@@ -46,15 +46,15 @@ Cell cells[][];
     public void randomizeCells() {
         // 4. Iterate through each cell and randomly set each
         //    cell's isAlive memeber to true or false
- for(int l = 0; l<cells.length;l++) {
-	 for(int o = 0;o<cells.length;o++) {
+ for(int i = 0; i<cells.length;i++) {
+	 for(int j = 0;j<cells.length;j++) {
 		 int r = ran.nextInt(2);
 		 if(r == 0) {
-			 cells[l][o].isAlive = true;
+			 cells[i][j].isAlive = true;
 				 
 			 }
 		 else {
-			 cells[l][o].isAlive = false;
+			 cells[j][i].isAlive = false;
 		 }
 	 }
  }
@@ -63,9 +63,9 @@ Cell cells[][];
 
     public void clearCells() {
         // 5. Iterate through the cells and set them all to dead
-    	for(int q = 0; q<cells.length;q++) {
-    		for(int w = 0;w<cells.length;w++) {
-    			cells[q][w].isAlive = false;
+    	for(int i = 0; i<cells.length;i++) {
+    		for(int j = 0;j<cells.length;j++) {
+    			cells[j][i].isAlive = false;
     		}
     	}
         repaint();
@@ -86,9 +86,9 @@ Cell cells[][];
     @Override
     public void paintComponent(Graphics g) {
         // 6. Iterate through the cells and draw them all
-    	for(int z = 0; z<cells.length;z++) {
-    		for(int x = 0; x<cells.length;x++) {
-    			
+    	for(int i = 0; i<cells.length;i++) {
+    		for(int j = 0; j<cells.length;j++) {
+    			cells[i][j].draw(g);
     		}
     	}
 
@@ -102,10 +102,28 @@ Cell cells[][];
         // 7. iterate through cells and fill in the livingNeighbors array
         //    using the getLivingNeighbors method.
         int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-
+        for(int i = 0;i<cells.length;i++) {
+        	for( int j = 0;j<cells.length;j++) {
+        		livingNeighbors[i][j]=getLivingNeighbors(cells, i , j);
+        		}
+        }
+        
+        
+        
         // 8. check if each cell should live or die
-
+        for(int i =0;i<cells.length;i++) {
+        	for(int j = 0;j<cells.length;j++) {
+        		if(livingNeighbors[i][j]>1 && livingNeighbors[i][j]<4) {
+        			cells[i][j].isAlive = true;
+}
+        		else {
+        			cells[i][j].isAlive = false;
+        		}
+        	}
+        	
+        
         repaint();
+    }
     }
 
     // The method below gets the number of living neighbors around a
