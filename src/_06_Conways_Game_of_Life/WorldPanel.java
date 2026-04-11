@@ -37,29 +37,28 @@ Cell cells[][];
         //    passing in the location.
         for(int i = 0; i<cells.length;i++) {
         	for(int j = 0; j<cells.length;j++) {
-        		cells[i][j] = new Cell(i,j,cellSize);
+        		cells[i][j] = new Cell(i*cellSize,j*cellSize,cellSize);
         	}
         }
 
     }
 
-    public void randomizeCells() {
-        // 4. Iterate through each cell and randomly set each
-        //    cell's isAlive memeber to true or false
- for(int i = 0; i<cells.length;i++) {
-	 for(int j = 0;j<cells.length;j++) {
-		 int r = ran.nextInt(2);
-		 if(r == 0) {
-			 cells[i][j].isAlive = true;
-				 
-			 }
-		 else {
-			 cells[j][i].isAlive = false;
-		 }
-	 }
- }
-        repaint();
-    }
+	public void randomizeCells() {
+		// 4. Iterate through each cell and randomly set each
+		// cell's isAlive memeber to true or false
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells.length; j++) {
+				int r = ran.nextInt(2);
+				if (r == 0) {
+					cells[i][j].isAlive = true;
+
+				} else {
+					cells[j][i].isAlive = false;
+				}
+			}
+		}
+		repaint();
+	}
 
     public void clearCells() {
         // 5. Iterate through the cells and set them all to dead
@@ -97,34 +96,26 @@ Cell cells[][];
         g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
     }
 
-    // Advances world one step
-    public void step() {
-        // 7. iterate through cells and fill in the livingNeighbors array
-        //    using the getLivingNeighbors method.
-        int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-        for(int i = 0;i<cells.length;i++) {
-        	for( int j = 0;j<cells.length;j++) {
-        		livingNeighbors[i][j]=getLivingNeighbors(cells, i , j);
-        		}
-        }
-        
-        
-        
-        // 8. check if each cell should live or die
-        for(int i =0;i<cells.length;i++) {
-        	for(int j = 0;j<cells.length;j++) {
-        		if(livingNeighbors[i][j]>1 && livingNeighbors[i][j]<4) {
-        			cells[i][j].isAlive = true;
-}
-        		else {
-        			cells[i][j].isAlive = false;
-        		}
-        	}
-        	
-        
-        repaint();
-    }
-    }
+	// Advances world one step
+	public void step() {
+		// 7. iterate through cells and fill in the livingNeighbors array
+		// using the getLivingNeighbors method.
+		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells.length; j++) {
+				livingNeighbors[i][j] = getLivingNeighbors(cells, i, j);
+			}
+		}
+
+		// 8. check if each cell should live or die
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells.length; j++) {
+				cells[i][j].liveOrDie(livingNeighbors[i][j]);
+			}
+
+			repaint();
+		}
+	}
 
     // The method below gets the number of living neighbors around a
     // particular cell in the 2D array. A cell can have up to 8 neighbors.
@@ -166,6 +157,7 @@ Cell cells[][];
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
+
     }
 
     @Override
@@ -187,6 +179,10 @@ Cell cells[][];
         //    cellSize, meaning it's possible to click inside of a cell. You
         //    have to determine the cell that was clicked from the pixel
         //    location and toggle the 'isAlive' variable for that cell.
+    	int cellX = e.getX()/cellSize;
+    	int cellY = e.getY()/cellSize;
+    	cells[cellX][cellY].isAlive = !cells[cellX][cellY].isAlive;
+    	
 
         repaint();
     }

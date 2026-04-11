@@ -36,17 +36,30 @@ public class Cell implements Drawable{
      * as if by reproduction.
      * (source: Wikipedia) 
      */
-    //Cell needs atleast two neightbors to live
-    public void liveOrDie(int numNeighbors) {
+	// Cell needs atleast two neightbors to live
+	public void liveOrDie(int numNeighbors) {
 
-    }
+		if (isAlive == true) {
+			if (numNeighbors < 2 || numNeighbors > 3) {
+				isAlive = false;
+			} else {
+				isAlive = true;
+			}
+		}
+		if (isAlive == false) {
+			if (numNeighbors == 3) {
+				isAlive = true;
+			}
+		}
+
+	}
 
     public int getX() {
-        return x;
+        return x*cellSize;
     }
 
     public int getY() {
-        return y;
+        return y*cellSize;
     }
 
     // This method draws a colored square if cell is alive or
