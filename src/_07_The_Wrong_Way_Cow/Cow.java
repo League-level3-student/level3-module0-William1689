@@ -1,5 +1,5 @@
 package _07_The_Wrong_Way_Cow;
-
+//Halp
 public class Cow {
 private int col;
 private int row;
